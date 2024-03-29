@@ -1,9 +1,25 @@
+# 모든 예제 코드는 https://learn-react-test.vlpt.us/#/02-tdd-introduction 에서 참조됨.
+
+
 타입스크립트의 경우
 npm install --save-dev ts-jest로
 jest를 설치 해야 한다.
 
-세팅은 토악질이 절로나옴(물론 바닐라 JS는 안 그런 거 같음.)
+* 세팅은 토악질이 절로나옴(물론 바닐라 JS는 안 그런 거 같음.)
     1. 루트 디렉토리에 jest.config.cjs 파일을 생성해서 
         설정을 넣어준다.
     2. 패키지.json의 스크립트에 "test": "jest --watchAll --verbose --config jest.config.cjs" 넣는다.
     3. npm install --save-dev jest-environment-jsdom을 설치한다.
+
+* TDD
+    1. 테스트코드 작성(해당 함수가 없거나 비어있는 상태이므로 무조건 실패) 
+    2. 테스트코드 성공(구체적인 로직을 생성함) 
+    3. 테스트코드 리팩토링(같은 테스트 결괏값이 나오도록 비효율적인 코드 개선 생략 가능.)
+
+* 타입스크립트에서의  '_'
+    1. 타입스크립트에서 언더스코어는 사용하지 않는 매개변수라는 뜻으로 사용하지 않는 매개변수는 언더스코어를 붙히자.
+
+* toBe, toStrictEqual, toEqual
+    1. toBe: 프리미티브 타입의 경우 값의 비교 but 레퍼런스 타입의 경우 메모리 위치를 검사함.
+    2. toEqual: 값만을 검사함.
+    3. toStrictEqual: 내용과 구조를 엄격히 검사함.
