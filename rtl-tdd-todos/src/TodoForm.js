@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 
-const TodoForm =()=> {
+const TodoForm =({onInsert})=> {
 
     const [value,setValue] = useState('')
 
@@ -8,8 +8,14 @@ const TodoForm =()=> {
         setValue(e.target.value);
     },[])
 
+    const onSubmit = useCallback( e => {
+        onInsert(value);
+        setValue('');
+        e.preventDefault(); // 새로고침 방지
+    },[onInsert,value])
 
-    return <form>
+
+    return <form onSubmit={onSubmit}>
         <input placeholder='할 일을 입력하세요'
                value={value}
                onChange={onChange}
