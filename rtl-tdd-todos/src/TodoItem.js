@@ -1,25 +1,18 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 
-const TodoItem = ({todo,onToggle,onRemove}) => {
-    const [spanStyle,setSpanStyle] = useState('');
+const TodoItem = React.memo(({todo,onToggle,onRemove}) => {
     const {id ,text ,done} = todo;
     const toggle = useCallback(()=> onToggle(id) ,[id,onToggle]);
     const remove = useCallback(() => onRemove(id), [id,onRemove]);
 
-
-    useEffect(()=>{
-        if(done)
-            setSpanStyle({ textDecoration : 'line-through' });
-        else 
-            setSpanStyle('');
-    },[])
-
+    console.log("리랜더링 됨", text);
 
     return <li>
-        <span style={{...spanStyle}} onClick={toggle} >{text}</span>
+        <span style={{textDecoration : done ? "line-through" : ""}} 
+              onClick={toggle}>{text}</span>
         <button onClick={remove}>삭제</button>
     </li>
-}
+});
 
 export default TodoItem;
